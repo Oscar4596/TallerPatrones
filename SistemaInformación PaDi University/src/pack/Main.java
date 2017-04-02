@@ -33,7 +33,7 @@ public class Main {
                     + "5) Listar facultades\n\t"
                     + "6) Lista carreras\n\t"
                     + "7) Listar cursos\n\t"
-                    + "8) Listar curso\n\t"
+                    + "8) Listar curso"
                     + "0) Salir"));
             switch (menu) {
                 case 1:
@@ -130,28 +130,20 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "No se encontró la curso", "ERROR", 1);
             } else {
 
-                try {
-                    Curso curso = this.carrera.buscarCurso(nomCurso);
+                Curso curso = this.carrera.buscarCurso(nomCurso);
+                carrera.addProfesor(curso.getNombre(),
+                        new Profesor(
+                                JOptionPane.showInputDialog("Ingrese codigo de profesor"),
+                                JOptionPane.showInputDialog("Ingrese nombre de profesor")));
+                do {
 
-                    carrera.addProfesor(curso.getCodigo(),
-                            new Profesor(
-                                    JOptionPane.showInputDialog("Ingrese codigo de profesor"),
-                                    JOptionPane.showInputDialog("Ingrese nombre de profesor")));
+                    carrera.addEstudiante(curso.getNombre(),
+                            new Estudiante(
+                                    JOptionPane.showInputDialog("Ingrese codigo del estudiante"),
+                                    JOptionPane.showInputDialog("Ingrese nombre del estudiante")));
 
-                    do {
-
-                        carrera.addEstudiante(curso.getCodigo(),
-                                new Estudiante(
-                                        JOptionPane.showInputDialog("Ingrese codigo del estudiante"),
-                                        JOptionPane.showInputDialog("Ingrese nombre del estudiante")));
-
-                        masEst = JOptionPane.showConfirmDialog(null, "¿Desea añadir más estudiantes?");
-                    } while (masEst == 0);
-
-                } catch (Error er) {
-                    JOptionPane.showMessageDialog(null, "No se encontró curso");
-                    System.out.println(""+er);
-                }
+                    masEst = JOptionPane.showConfirmDialog(null, "¿Desea añadir más estudiantes?");
+                } while (masEst == 0);
 
             }
 
@@ -176,15 +168,11 @@ public class Main {
     }
 
     private void infoCurso() {
-        try {
-            this.carrera = this.uni.buscaCarrera(
-                    JOptionPane.showInputDialog("Ingrese el nombre de la facultad"),
-                    JOptionPane.showInputDialog("Ingrese el nombre de la carrera"));
-            carrera.inforCurso(JOptionPane.showInputDialog("Ingrese codigo del curso"));
-        } catch (Error er) {
-            JOptionPane.showMessageDialog(null, "No se encontró el curso");
-            System.err.println("ERROR" + er);
-        }
+        this.carrera = this.uni.buscaCarrera(
+                JOptionPane.showInputDialog("Ingrese el nombre de la facultad"),
+                JOptionPane.showInputDialog("Ingrese el nombre de la carrera"));
+        carrera.inforCurso(JOptionPane.showInputDialog("Ingrese nombre del curso"));
+        
     }
 
 }
