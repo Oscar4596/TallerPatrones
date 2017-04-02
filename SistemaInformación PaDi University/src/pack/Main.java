@@ -3,22 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pack;
 
+/**
+ *
+ * @author Alejandra
+ */
 import javax.swing.JOptionPane;
 
 public class Main {
 
     private Universidad uni;
     private Carrera carrera;
-    private String nomUni, nomFacu, nomCarrera, nomCurso, codCurso;
+    private String  nomUni, nomFacu, nomCarrera, nomCurso, codCurso;
     int mas = 1;
 
     public static void main(String[] args) {
-        new Main();
+        //new Main();
+        Usuario usuario= new Usuario ("PaDi", "software");
+        Proxy Proxy=new Proxy(usuario);
+        System.out.println("Usuario correcto ");
+        Proxy.acceder();
+                
     }
 
     public Main() {
+        
+                
 
         nomUni = JOptionPane.showInputDialog("Ingrese el nombre de la Universidad");
         uni = new Universidad(nomUni);
@@ -185,6 +195,10 @@ public class Main {
             JOptionPane.showMessageDialog(null, "No se encontró el curso");
             System.err.println("ERROR" + er);
         }
+    }
+
+    void setVisible(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

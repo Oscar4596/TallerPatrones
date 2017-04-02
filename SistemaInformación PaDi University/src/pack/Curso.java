@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pack;
 
 import java.util.ArrayList;
 
@@ -60,3 +59,4 @@ public class Curso {
     
     
 }
+

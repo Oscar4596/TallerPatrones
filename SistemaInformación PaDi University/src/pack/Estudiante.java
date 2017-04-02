@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pack;
 
 /**
  *
- * @author OscarLopez
+ * @author Alejandra
  */
 public class Estudiante {
     private String codigo;
