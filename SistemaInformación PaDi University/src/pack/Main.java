@@ -33,7 +33,7 @@ public class Main {
                     + "5) Listar facultades\n\t"
                     + "6) Lista carreras\n\t"
                     + "7) Listar cursos\n\t"
-                    + "8) Listar curso"
+                    + "8) Listar curso\n\t"
                     + "0) Salir"));
             switch (menu) {
                 case 1:
@@ -88,11 +88,11 @@ public class Main {
         do {
             nomFacu = JOptionPane.showInputDialog("Ingrese el nombre de la facultad en la que desea agregar la carrera");
             nomCarrera = JOptionPane.showInputDialog("Ingrese el nombre de la carrera");
-            this.carrera = new Carrera(nomCarrera);
             if (uni.buscaFacultad(nomFacu) == null) {
-                JOptionPane.showMessageDialog(null, "No se encontró la carrera", "ERROR", 1);
+                JOptionPane.showMessageDialog(null, "No se encontró la facultad", "ERROR", 1);
             } else {
-                uni.addCarreras(nomFacu, this.carrera);
+                //this.carrera = new Carrera(nomCarrera);
+                uni.addCarreras(nomFacu, nomCarrera);
                 mas = JOptionPane.showConfirmDialog(null, "¿Desea añadir más carreras?");
             }
         } while (mas == 0);
@@ -130,20 +130,28 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "No se encontró la curso", "ERROR", 1);
             } else {
 
-                Curso curso = this.carrera.buscarCurso(nomCurso);
-                carrera.addProfesor(curso.getNombre(),
-                        new Profesor(
-                                JOptionPane.showInputDialog("Ingrese codigo de profesor"),
-                                JOptionPane.showInputDialog("Ingrese nombre de profesor")));
-                do {
+                try {
+                    Curso curso = this.carrera.buscarCurso(nomCurso);
 
-                    carrera.addEstudiante(curso.getNombre(),
-                            new Estudiante(
-                                    JOptionPane.showInputDialog("Ingrese codigo del estudiante"),
-                                    JOptionPane.showInputDialog("Ingrese nombre del estudiante")));
+                    carrera.addProfesor(curso.getCodigo(),
+                            new Profesor(
+                                    JOptionPane.showInputDialog("Ingrese codigo de profesor"),
+                                    JOptionPane.showInputDialog("Ingrese nombre de profesor")));
 
-                    masEst = JOptionPane.showConfirmDialog(null, "¿Desea añadir más estudiantes?");
-                } while (masEst == 0);
+                    do {
+
+                        carrera.addEstudiante(curso.getCodigo(),
+                                new Estudiante(
+                                        JOptionPane.showInputDialog("Ingrese codigo del estudiante"),
+                                        JOptionPane.showInputDialog("Ingrese nombre del estudiante")));
+
+                        masEst = JOptionPane.showConfirmDialog(null, "¿Desea añadir más estudiantes?");
+                    } while (masEst == 0);
+
+                } catch (Error er) {
+                    JOptionPane.showMessageDialog(null, "No se encontró curso");
+                    System.out.println("" + er);
+                }
 
             }
 
@@ -168,11 +176,15 @@ public class Main {
     }
 
     private void infoCurso() {
-        this.carrera = this.uni.buscaCarrera(
-                JOptionPane.showInputDialog("Ingrese el nombre de la facultad"),
-                JOptionPane.showInputDialog("Ingrese el nombre de la carrera"));
-        carrera.inforCurso(JOptionPane.showInputDialog("Ingrese nombre del curso"));
-        
+        try {
+            this.carrera = this.uni.buscaCarrera(
+                    JOptionPane.showInputDialog("Ingrese el nombre de la facultad"),
+                    JOptionPane.showInputDialog("Ingrese el nombre de la carrera"));
+            carrera.inforCurso(JOptionPane.showInputDialog("Ingrese codigo del curso"));
+        } catch (Error er) {
+            JOptionPane.showMessageDialog(null, "No se encontró el curso");
+            System.err.println("ERROR" + er);
+        }
     }
 
 }

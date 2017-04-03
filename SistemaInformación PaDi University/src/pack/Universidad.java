@@ -48,10 +48,10 @@ public class Universidad {
         return facultad;
     }
 
-    public void addCarreras(String nomFacu, Carrera carrera) {
+    public void addCarreras(String nomFacu, String nomCarrera) {
         Facultad faculti = this.buscaFacultad(nomFacu);
-        faculti.addCarreras(carrera);
-        System.out.println("Carrera " + carrera.getNombre() + " añadida en " + faculti.getNombre());
+        faculti.addCarreras(nomCarrera);
+        
     }
 
     public Carrera buscaCarrera(String nomFacultad, String nomCarrera) {
@@ -75,7 +75,7 @@ public class Universidad {
         for (int i = 0; i < this.getFacultades().size(); i++) {
             System.out.println("\t\t-"+this.getFacultades().get(i).getNombre());
             for (int j = 0; j < this.getFacultades().get(i).getCarreras().size(); j++) {
-                System.out.println("\t\t\t-"+this.getFacultades().get(i).getCarreras().get(i).getNombre());
+                System.out.println("\t\t\t-"+this.getFacultades().get(i).getCarreras().get(j).getNombre());
                 
             }
         }

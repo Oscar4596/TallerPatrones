@@ -48,15 +48,15 @@ public class Carrera {
         return cursito;
     }
 
-    public void addEstudiante(String nomCurso, Estudiante estud) {
+    public void addEstudiante(String codCurso, Estudiante estud) {
 
-        Curso cursito = this.buscarCurso(nomCurso);
+        Curso cursito = this.buscarCurso(codCurso);
         cursito.addEstudiantes(estud);
 
     }
 
-    public void addProfesor(String nomCurso, Profesor profesor) {
-        Curso cursito = this.buscarCurso(nomCurso);
+    public void addProfesor(String codCurso, Profesor profesor) {
+        Curso cursito = this.buscarCurso(codCurso);
         cursito.addProfesor(profesor);
         System.out.println("Curso " + cursito.getNombre() + " añadido a " + this.getNombre());
     }
@@ -68,8 +68,8 @@ public class Carrera {
         }
     }
 
-    public void inforCurso(String nomCurso) {
-        Curso cur = this.buscarCurso(nomCurso);
+    public void inforCurso(String codCurso) {
+        Curso cur = this.buscarCurso(codCurso);
         System.out.println("" + cur.getNombre() + ":\n");
         System.out.println("\tProfesor: \t" + cur.getProfesor());
         for (int i = 0; i < cur.getEstudiantes().size(); i++) {

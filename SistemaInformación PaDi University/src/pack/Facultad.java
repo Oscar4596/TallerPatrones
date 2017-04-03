@@ -6,21 +6,26 @@
 package pack;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
  * @author OscarLopez
  */
 public class Facultad {
+
     private String nombre;
     private ArrayList<Carrera> carreras;
+    private CarreraFactory carrerasFactory;
+    
 
     public Facultad(String nombre) {
         this.nombre = nombre;
         this.carreras = new ArrayList<Carrera>();
+        carrerasFactory = new CarreraFactory();
+        
+        
     }
-    
-    
 
     public String getNombre() {
         return nombre;
@@ -34,9 +39,11 @@ public class Facultad {
         return carreras;
     }
 
-    public void addCarreras(Carrera carrera) {
-        this.getCarreras().add(carrera);
+    public void addCarreras(String nomCarrera) {
+        
+        this.carreras = carrerasFactory.getCarrera(nomCarrera, this.getCarreras());
+        
+        
     }
-    
-    
+
 }
