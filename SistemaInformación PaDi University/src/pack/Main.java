@@ -5,6 +5,7 @@
  */
 package pack;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Main {
@@ -12,6 +13,7 @@ public class Main {
     private Universidad uni;
     private Carrera carrera;
     private String nomUni, nomFacu, nomCarrera, nomCurso, codCurso;
+
     int mas = 1;
 
     public static void main(String[] args) {
@@ -34,6 +36,7 @@ public class Main {
                     + "6) Lista carreras\n\t"
                     + "7) Listar cursos\n\t"
                     + "8) Listar curso\n\t"
+                    + "9) Calcular notas de estudiante\n\t"
                     + "0) Salir"));
             switch (menu) {
                 case 1:
@@ -59,6 +62,9 @@ public class Main {
                     break;
                 case 8:
                     infoCurso();
+                    break;
+                case 9:
+                    calcNotas();
                     break;
                 case 0:
                     JOptionPane.showMessageDialog(null, "Que tenga un lindo día, o linda tarde o linda noche");
@@ -185,6 +191,15 @@ public class Main {
             JOptionPane.showMessageDialog(null, "No se encontró el curso");
             System.err.println("ERROR" + er);
         }
+    }
+
+    private void calcNotas() {
+        intEstudiante est = new DecoradorPonderado(
+                new DecoradorNotasSemestre(
+                        new Estudiante(
+                                JOptionPane.showInputDialog("Ingrese el código del estudiante"), 
+                                JOptionPane.showInputDialog("Ingrese el nombre del estudiante"))));
+        JOptionPane.showMessageDialog(null, est.infoEstudiante());
     }
 
 }

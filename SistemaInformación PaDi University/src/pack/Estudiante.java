@@ -9,7 +9,7 @@ package pack;
  *
  * @author OscarLopez
  */
-public class Estudiante {
+public class Estudiante implements intEstudiante{
     private String codigo;
     private String nombre;
 
@@ -34,6 +34,12 @@ public class Estudiante {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    @Override
+    public String infoEstudiante() {
+        String info = "Información académica de "+this.getNombre()+":";
+        return info;
     }
     
 }
